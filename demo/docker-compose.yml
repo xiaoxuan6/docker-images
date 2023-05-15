@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: ghcr.io/xiaoxuan6/docker-images/elasticsearch:7.17.7
+    ports:
+      - 9200:9200
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://127.0.0.1:9200" ]
+      retries: 3
+      start_period: "50s"
