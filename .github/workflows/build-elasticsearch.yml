@@ -23,4 +23,4 @@ jobs:
         run: |
           docker build -t ghcr.io/xiaoxuan6/docker-images/elasticlsearch:7.17.7 .
           docker push ghcr.io/xiaoxuan6/docker-images/elasticlsearch:7.17.7
-        working-directory: ./elasticsearch/7.17.7/Dockerfile
+        working-directory: elasticsearch/7.17.7
