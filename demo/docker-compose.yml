@@ -17,3 +17,15 @@ services:
       test: [ "CMD", "curl", "-f", "http://127.0.0.1:9200" ]
       retries: 3
       start_period: "50s"
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: ghcr.io/xiaoxuan6/docker-images/rabbitmq:3.11.1
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: unless-stopped
+    environment:
+      TZ: "Asia/Shanghai"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://127.0.0.1:15672" ]
