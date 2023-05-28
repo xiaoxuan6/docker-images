@@ -11,7 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'xiaoxuan6/docker-images' && contains(run: "git log -1 --name-only --pretty=format:", with: "php/7.4/alpine/Dockerfile")}};
+    if: >-
+      ${{ github.repository == 'xiaoxuan6/docker-images' }} &&
+      contains(run: "git log -1 --name-only --pretty=format:", with: "php/7.4/alpine/Dockerfile")
     steps:
       - uses: actions/checkout@v1
       - uses: azure/docker-login@v1
