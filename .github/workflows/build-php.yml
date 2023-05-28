@@ -1,4 +1,4 @@
-name: "build rabbitmq"
+name: "build php"
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.repository == 'xiaoxuan6/docker-images'
+    if: ${{ github.repository == 'xiaoxuan6/docker-images' && contains(run: "git log -1 --name-only --pretty=format:", with: "php/7.4/alpine/Dockerfile")}};
     steps:
       - uses: actions/checkout@v1
       - uses: azure/docker-login@v1
@@ -23,12 +23,12 @@ jobs:
         run: |
           docker build -t ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine .
           docker push ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine
-        working-directory: php/7.4
+        working-directory: php/7.4/alpine
 
   build-cron-supervisor:
     runs-on: ubuntu-latest
     needs: build
-    if: github.repository == 'xiaoxuan6/docker-images' and ${{ success() }}
+    if: github.repository == 'xiaoxuan6/docker-images'
     steps:
       - uses: actions/checkout@v1
       - uses: azure/docker-login@v1
@@ -38,6 +38,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build image
         run: |
-          docker build -f Dockerfile.process --build-arg INSTALL_SUPERVISOR=true --build-arg INSTALL_CRON=true -t ghcr.io/xiaoxuan6/docker-images/php:7.4-cron-supervisor-alpine .
+          docker build --build-arg INSTALL_SUPERVISOR=true --build-arg INSTALL_CRON=true -t ghcr.io/xiaoxuan6/docker-images/php:7.4-cron-supervisor-alpine .
           docker push ghcr.io/xiaoxuan6/docker-images/php:7.4-cron-supervisor-alpine
-        working-directory: php/7.4
+        working-directory: php/7.4/process

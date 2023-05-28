@@ -1,4 +1,4 @@
-From ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine
+FROM ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine
 
 # 安装 supervisor
 COPY ./supervisord.conf /etc/supervisord.conf
