@@ -10,4 +10,5 @@ RUN apk --no-cache add tzdata ca-certificates \
   && install-php-extensions zip \
     mysqli \
     redis \
-    pdo_mysql
+    pdo_mysql \
+    gd
