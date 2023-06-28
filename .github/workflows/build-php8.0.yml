@@ -1,11 +1,11 @@
-name: "build php"
+name: "build php8.0"
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'php/7.4/*'
+      - 'php/8.0/*'
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       ${{ github.repository == 'xiaoxuan6/docker-images' }} &&
-      contains(run: "git log -1 --name-only --pretty=format:", with: "php/7.4/alpine/Dockerfile")
+      contains(run: "git log -1 --name-only --pretty=format:", with: "php/8.0/alpine/Dockerfile")
     steps:
       - uses: actions/checkout@v1
       - uses: azure/docker-login@v1
@@ -23,9 +23,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build image
         run: |
-          docker build -t ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine .
-          docker push ghcr.io/xiaoxuan6/docker-images/php:7.4-fpm-alpine
-        working-directory: php/7.4/alpine
+          docker build -t ghcr.io/xiaoxuan6/docker-images/php:8.0-fpm-alpine .
+          docker push ghcr.io/xiaoxuan6/docker-images/php:8.0-fpm-alpine
+          docker logout
+        working-directory: php/8.0/alpine
 
   build-cron-supervisor:
     runs-on: ubuntu-latest
@@ -40,6 +41,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build image
         run: |
-          docker build --build-arg INSTALL_SUPERVISOR=true --build-arg INSTALL_CRON=true -t ghcr.io/xiaoxuan6/docker-images/php:7.4-cron-supervisor-alpine .
-          docker push ghcr.io/xiaoxuan6/docker-images/php:7.4-cron-supervisor-alpine
-        working-directory: php/7.4/process
+          docker build --build-arg INSTALL_SUPERVISOR=true --build-arg INSTALL_CRON=true -t ghcr.io/xiaoxuan6/docker-images/php:8.0-cron-supervisor-alpine .
+          docker push ghcr.io/xiaoxuan6/docker-images/php:8.0-cron-supervisor-alpine
+          docker logout
+        working-directory: php/8.0/process
