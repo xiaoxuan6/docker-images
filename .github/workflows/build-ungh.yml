@@ -1,0 +1,26 @@
+name: "build ungh"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ungh/*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.repository == 'xiaoxuan6/docker-images'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: build image
+        run: |
+          docker build -t ghcr.io/xiaoxuan6/ungh:latest .
+          docker push ghcr.io/xiaoxuan6/ungh:latest
+        working-directory: ungh
