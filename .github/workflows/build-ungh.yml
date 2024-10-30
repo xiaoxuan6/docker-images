@@ -5,7 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'ungh/*'
+      - 'ungh/.dockerignore'
+      - 'ungh/Dockerfile'
+      - 'ungh/entrypoint.sh'
+      - 'ungh/index.ts'
+      - 'ungh/package.json'
   workflow_dispatch:
 
 jobs:

@@ -5,7 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'github-activity/*'
+      - 'github-activity/.dockerignore'
+      - 'github-activity/Dockerfile'
+      - 'github-activity/entrypoint.sh'
+      - 'github-activity/package.json'
   workflow_dispatch:
 
 jobs:
