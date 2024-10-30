@@ -30,7 +30,7 @@ COPY entrypoint.sh package.json ./
 RUN npm cache clean --force && \
     chmod +x .env && \
     chmod +x entrypoint.sh && \
-    sed -i "s|location.href = 'https://github.com/gxr404/github-activity'|window.open('https://github.com/gxr404/github-activity', '_blank')|g" src/lib/utils.ts
+    sed -i "s|location.href = 'https://github.com/gxr404/github-activity'|window.open('https://github.com/xiaoxuan6/docker-images/tree/main/github-activity', '_blank')|g" src/lib/utils.ts
 
 EXPOSE 3000
 
