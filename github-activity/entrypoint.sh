@@ -9,4 +9,4 @@ fi
 
 echo "GITHUB_TOKEN=$GITHUB_TOKEN" >.env
 
-yarn dev
+pnpm dev

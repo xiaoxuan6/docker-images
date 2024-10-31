@@ -1,5 +1,8 @@
 FROM node:20.18.0-alpine3.20 AS node
 
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install -g pnpm
+
 FROM alpine AS build-dev
 
 WORKDIR /app
@@ -8,7 +11,7 @@ RUN apk add --no-cache git && \
     git clone --depth 1 https://ghproxy.cc/https://github.com/gxr404/github-activity.git && \
     cd github-activity && \
     cp .env.template .env && \
-    rm -rf .vscode .env.template .eslintrc.json .gitignore README.md
+    rm -rf .vscode docs/assets .env.template .eslintrc.json .gitignore README.md
 
 FROM node AS node1
 
@@ -17,7 +20,7 @@ WORKDIR /app
 COPY --from=build-dev /app/github-activity .
 COPY package.json .
 
-RUN yarn install
+RUN pnpm install
 
 FROM node
 
