@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "nitropack prepare",
     "build": "nitropack build",
-    "dev": "nitropack dev --port=3001"
+    "dev": "nitropack dev --port=3001 --host=0.0.0.0"
   },
   "devDependencies": {
     "nitropack": "^2.9.7",
