@@ -9,6 +9,7 @@ on:
       - 'ungh/Dockerfile'
       - 'ungh/entrypoint.sh'
       - 'ungh/index.ts'
+      - 'ungh/nitro.config.ts'
       - 'ungh/package.json'
   workflow_dispatch:
 
