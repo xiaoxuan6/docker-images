@@ -317,7 +317,7 @@ export default eventHandler((event) => {
     const currentDomain = event.req.headers.host.split(':')[0]; // 获取主机名
     const currentPort = event.req.headers.host.split(':')[1] || (event.req.protocol === 'https' ? '443' : '80');
 
-    let fullDomain = currentDomain;
+    let fullDomain = `${currentProtocol}://${currentDomain}`;
     if(currentPort != '80' && currentPort != '443') {
         fullDomain=`${currentProtocol}://${currentDomain}:${currentPort}`;
     }
