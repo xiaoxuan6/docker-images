@@ -1,7 +1,7 @@
 FROM alpine AS build-dev
 
 RUN apk add --no-cache git && \
-    git clone --depth 1 https://github.com/unjs/ungh.git
+    git clone --depth 1 https://ghp.ci/https://github.com/xiaoxuan6/ungh.git
 
 FROM node:20.18.0-alpine3.20
 
@@ -23,7 +23,8 @@ RUN cp .env.example .env && \
     rm -rf .git .github .editorconfig .env.example .gitignore .prettierignore LICENSE wrangler.toml README.md tsconfig.json eslint.config.mjs
 
 COPY index.ts ./routes/index.ts
+COPY nitro.config.ts ./nitro.config.ts
 
-EXPOSE 3000
+EXPOSE 3001
 
 ENTRYPOINT ["sh", "/src/entrypoint.sh"]

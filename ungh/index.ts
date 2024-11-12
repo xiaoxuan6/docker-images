@@ -22,7 +22,8 @@ GitHub repository information.
     "stars": 1168,
     "watchers": 1168,
     "forks": 59,
-    "defaultBranch": "main"
+    "defaultBranch": "main",
+    "language": "TypeScript"  
   }
 }
 \`\`\`
@@ -223,7 +224,8 @@ GitHub organization repositories overview.
       "pushedAt": "2022-04-08T20:29:48Z",
       "stars": 93,
       "watchers": 93,
-      "forks": 14
+      "forks": 14,
+      "language": "TypeScript"
     }
   ]
 }
@@ -284,7 +286,8 @@ Get user repositories.
       "updatedAt": "2024-01-04T17:20:53Z",
       "watchers": 51,
       "forks": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "language": "TypeScript"
     }
   ]
 }
