@@ -1,4 +1,5 @@
 import { defineNitroConfig } from "nitropack/config";
+import {resolve} from 'path';
 
 export default defineNitroConfig({
     compatibilityDate: '2024-11-12',
@@ -12,6 +13,12 @@ export default defineNitroConfig({
         },
         // Backward compatibility for changelogen
         "/user/find/**": { proxy: "/users/find/**" },
+        "/icon.svg": {
+            handler: (req, res) => {
+                res.setHeader('Content-Type', 'image/x-icon');
+                res.sendFile(resolve(__dirname, 'public/icon.svg'));
+            }
+        }
     },
     storage: {
         "/cache/gh": {

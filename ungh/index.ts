@@ -324,8 +324,11 @@ export default eventHandler((event) => {
     return `<!DOCTYPE html>
 <html>
 <head>
-  <title>🐙 UNGH API</title>
+  <title>UNGH API</title>
   <meta charset="utf-8">
+  <meta name="keywords" content="github、github-api"/>
+  <meta name="description" content="github api 接口"/>
+  <link rel="icon" href="/icon.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.7.0/github-markdown.min.css">
   <style>
     .markdown-body {

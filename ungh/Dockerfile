@@ -24,6 +24,7 @@ RUN cp .env.example .env && \
 
 COPY index.ts ./routes/index.ts
 COPY nitro.config.ts ./nitro.config.ts
+COPY public/icon.svg ./public/icon.svg
 
 EXPOSE 3001
 
