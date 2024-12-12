@@ -24,8 +24,9 @@ jobs:
           login-server: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: print docker version
+        run: docker --version
       - name: build image
         run: |
-          docker build -t ghcr.io/xiaoxuan6/ungh:latest .
-          docker push ghcr.io/xiaoxuan6/ungh:latest
+          docker build --platform linux/amd64,linux/arm64 -t ghcr.io/xiaoxuan6/ungh:latest . --push
         working-directory: ungh
