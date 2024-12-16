@@ -17,12 +17,9 @@ jobs:
     if: github.repository == 'xiaoxuan6/docker-images'
     steps:
       - uses: actions/checkout@v1
-      - uses: azure/docker-login@v1
+      - uses: xiaoxuan6/docker-build-action@develop
         with:
-          login-server: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: build image
-        run: |
-          docker build --platform linux/amd64,linux/arm64 -t ghcr.io/xiaoxuan6/github-activity:latest . --push
-        working-directory: github-activity
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: 'github-activity'
+          image-platform: linux/arm64,linux/amd64
+          build-context: ./github-activity
